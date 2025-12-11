@@ -4,7 +4,8 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Sidebar from "./components/SideBar";
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
-import Resume from "./Pages/ResumePage";
+import ResumePage from "./Pages/ResumePage";
+import PortfolioPage from "./Pages/PortfolioPage";
 
 function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -86,7 +87,8 @@ function App() {
 
         <HomePage />
         <AboutPage/>
-        <Resume />
+        <ResumePage />
+        <PortfolioPage />
       </div>
 
       {/* ==================== MOBILE BACKDROP ==================== */}
