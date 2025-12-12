@@ -7,6 +7,7 @@ import AboutPage from "./Pages/AboutPage";
 import ResumePage from "./Pages/ResumePage";
 import PortfolioPage from "./Pages/PortfolioPage";
 import ServicesPage from "./Pages/ServicesPage";
+import TestamonialPage from "./Pages/TestimonialsPage";
 
 function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -69,6 +70,7 @@ function App() {
             <Sidebar
               items={pageSections}
               onClose={() => setSidebarOpen(false)}
+              isSmallScreen={isSmallScreen}
             />
           </div>
         </div>
@@ -85,12 +87,17 @@ function App() {
             {sidebarOpen ? <HiX size={28} /> : <HiMenu size={28} />}
           </button>
         )}
-
-        <HomePage />
-        <AboutPage/>
-        <ResumePage />
-        <PortfolioPage />
-        <ServicesPage />
+<section id="home"><HomePage /></section>
+<section id="about"><AboutPage/></section>        
+<section id="resume"><ResumePage /></section> 
+<section id="portfolio"><PortfolioPage /></section> 
+<section id="services"><ServicesPage /><TestamonialPage /></section> 
+<section id="contact"></section> 
+    
+        
+        
+        
+        
       </div>
 
       {/* ==================== MOBILE BACKDROP ==================== */}
