@@ -1,30 +1,7 @@
 // Pages/ResumePage.jsx
 import { motion } from "framer-motion";
 import SectionHeading from "../components/Heading";
-
-// Animation Variants (same as About page — clean & reusable)
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-    },
-  },
-};
+import { containerVariants, itemVariants } from "../animations/variants";
 
 const Resume = () => {
   return (

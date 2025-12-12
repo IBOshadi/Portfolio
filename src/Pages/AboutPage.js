@@ -10,30 +10,8 @@ import {
   BriefcaseIcon,
   ChatBubbleLeftRightIcon as Headphones,
 } from "@heroicons/react/24/outline";
+import { containerVariants, itemVariants } from "../animations/variants";
 
-// Container animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-    },
-  },
-};
 
 const AboutPage = () => {
   return (
