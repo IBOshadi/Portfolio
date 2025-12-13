@@ -12,7 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { containerVariants, itemVariants } from "../animations/variants";
 
-
 const AboutPage = () => {
   return (
     <motion.div
@@ -84,8 +83,32 @@ const AboutPage = () => {
                 <div className="space-y-6 p-6 max-w-lg font-sans bg-gray-50 rounded-xl">
                   <InfoRow label="Age" value="25" />
                   <InfoRow label="Degree" value="Master" />
-                  <InfoRow label="Website" value="www.iboshadi.com" />
-                  <InfoRow label="Upwork" value="Available" />
+                  <InfoRow
+                    label="Website"
+                    value={
+                      <a
+                        href="https://portfolio-opal-one-m4fkujetv2.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#3b82f6]"
+                      >
+                        Visit Website
+                      </a>
+                    }
+                  />
+                  <InfoRow
+                    label="Upwork"
+                    value={
+                      <a
+                        href="https://www.upwork.com/freelancers/~0138a519cc1c237698"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#3b82f6]"
+                      >
+                        Available
+                      </a>
+                    }
+                  />
                 </div>
               </div>
             </motion.div>
