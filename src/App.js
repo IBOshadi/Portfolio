@@ -8,6 +8,7 @@ import ResumePage from "./Pages/ResumePage";
 import PortfolioPage from "./Pages/PortfolioPage";
 import ServicesPage from "./Pages/ServicesPage";
 import TestamonialPage from "./Pages/TestimonialsPage";
+import ContactPage from "./Pages/ContactPage";
 
 function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -103,7 +104,9 @@ function App() {
           <ServicesPage />
           <TestamonialPage />
         </section>
-        <section id="contact"></section>
+        <section id="contact">
+          <ContactPage />
+        </section>
       </div>
 
       {/* ==================== MOBILE BACKDROP ==================== */}

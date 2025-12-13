@@ -26,7 +26,7 @@ const Services = () => {
 
       <motion.p
         variants={itemVariants}
-        className="mt-10 text-justify text-gray-700 text-lg leading-relaxed"
+        className="mt-10 text-justify text-gray-800"
       >
         I deliver end-to-end solutions in AI and software development,
         specializing in natural language processing (NLP), computer vision, data

@@ -10,7 +10,7 @@ const Resume = () => {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
-      className="p-6 md:p-10 bg-white min-h-screen"
+      className="p-5 md:p-10 bg-white min-h-screen"
     >
       <motion.div variants={itemVariants}>
         <SectionHeading title="Resume" />
@@ -18,7 +18,7 @@ const Resume = () => {
 
       <motion.p
         variants={itemVariants}
-        className="mt-10 text-justify text-gray-700 text-lg leading-relaxed"
+        className="mt-10 text-justify text-gray-800"
       >
         AI & Software Engineer with expertise in machine learning, robotics, and
         full-stack development. Passionate about building intelligent, scalable
@@ -26,7 +26,7 @@ const Resume = () => {
       </motion.p>
 
       {/* Two Columns: Education & Experience */}
-      <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
         {/* === EDUCATION COLUMN === */}
         <motion.div variants={containerVariants}>
           <motion.h2

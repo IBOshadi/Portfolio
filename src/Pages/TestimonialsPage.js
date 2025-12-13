@@ -66,7 +66,7 @@ const TestimonialCarousel = () => {
 
         <motion.p
           variants={itemVariants}
-          className="mt-6 text-gray-600 "
+          className="mt-10 text-justify text-gray-800"
         >
           Happy clients, successful projects — a few kind words from people I’ve helped.
         </motion.p>
