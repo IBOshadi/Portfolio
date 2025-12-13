@@ -4,32 +4,33 @@ import { motion } from "framer-motion";
 import SectionHeading from "../components/Heading";
 import TestimonialCard from "../components/TestimonialCard";
 import { containerVariants, itemVariants } from "../animations/variants";
-import image2 from "../assets/img2.jpeg";
+import image1 from "../assets/img16.png";
+import image2 from "../assets/img17.jpg";
 
 const testimonials = [
   {
     image: image2,
-    name: "Sarah Wilson",
-    designation: "Product Designer at TechCorp",
-    comment: "Working with Oshadi was a game-changer. The AI chatbot increased our engagement by 300% in just two weeks!",
+    name: "Ananda Gunathilaka",
+    designation: "Director at Royal Insurance Brokers",
+    comment: "The HR management system developed by Oshadi has streamlined our HR processes, making them more efficient and user-friendly. Highly recommended!",
   },
   {
     image: image2,
-    name: "Michael Chen",
-    designation: "CEO at StartupX",
-    comment: "Delivered a production-ready computer vision system ahead of schedule. Professional, fast, and incredibly talented.",
+    name: "Gayan Gamage",
+    designation: "Director at Retail Target Software Solutions",
+    comment: "Oshadi continues to perform her duties with exceptional dedication and professionalism and remains in excellent standing within the organization",
   },
   {
-    image: image2,
-    name: "Emma Larsson",
-    designation: "Founder at AIHealth",
-    comment: "The medical image analysis model she built has transformed how we detect diseases. Absolute genius!",
+    image: image1,
+    name: "Organization",
+    designation: "Kingslake Engineering Solutions",
+    comment: "She successfully implemented the style classification model using CNNs, and fabric flow detection system that significantly improving our image recognition capabilities.",
   },
   {
-    image: image2,
-    name: "David Kim",
-    designation: "CTO at FinTech Pro",
-    comment: "Her RAG-powered chatbot with Pinecone integration saved us months of development. Highly recommend!",
+    image: image1,
+    name: "Organization",
+    designation: "Miracle Creative Solutions",
+    comment: "Delivered a face recognition based attendance system and a hr management system that boosted our operational efficiency. Outstanding work!",
   },
 ];
 

@@ -26,16 +26,21 @@ const menuIcons = {
 
 export default function Sidebar({ items, onClose, isSmallScreen }) {
   const [activeSection, setActiveSection] = useState("home");
+  const [hoveredSection, setHoveredSection] = useState(null);
 
-  // Scroll spy
+  // SCROLL SPY — Fixed: Now listens to the correct scroll container
   useEffect(() => {
+    const scrollContainer = document.querySelector(".flex-1.overflow-y-auto");
+    if (!scrollContainer) return;
+
     const handleScroll = () => {
       let current = "home";
       for (const item of items) {
         const section = document.getElementById(item.id);
         if (section) {
           const rect = section.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
+          // Adjust threshold for better UX
+          if (rect.top <= 200 && rect.bottom >= 200) {
             current = item.id;
             break;
           }
@@ -45,8 +50,58 @@ export default function Sidebar({ items, onClose, isSmallScreen }) {
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, [items]);
+
+  // MOUSE HOVER DETECTION — Now works perfectly
+  useEffect(() => {
+    const contentArea = document.querySelector(".flex-1.overflow-y-auto");
+    if (!contentArea) return;
+
+    let ticking = false;
+    const handleMouseMove = (e) => {
+      if (ticking) return;
+
+      requestAnimationFrame(() => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        let hovered = null;
+
+        for (const item of items) {
+          const section = document.getElementById(item.id);
+          if (!section) continue;
+
+          const rect = section.getBoundingClientRect();
+          const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+          if (
+            isInViewport &&
+            mouseY >= rect.top &&
+            mouseY <= rect.bottom &&
+            mouseX >= rect.left &&
+            mouseX <= rect.right
+          ) {
+            hovered = item.id;
+            break;
+          }
+        }
+
+        setHoveredSection(hovered);
+        ticking = false;
+      });
+
+      ticking = true;
+    };
+
+    contentArea.addEventListener("mousemove", handleMouseMove);
+    contentArea.addEventListener("mouseleave", () => setHoveredSection(null));
+
+    return () => {
+      contentArea.removeEventListener("mousemove", handleMouseMove);
+      contentArea.removeEventListener("mouseleave", () => {});
+    };
   }, [items]);
 
   const handleClick = (id) => {
@@ -73,14 +128,34 @@ export default function Sidebar({ items, onClose, isSmallScreen }) {
         Oshadi Irugalbandara
       </h1>
 
-      {/* === SOCIAL ICONS - NOW WITH CORRECT COLORS === */}
+      {/* SOCIAL ICONS */}
       <div className="flex gap-5 mb-12">
         {[
-          { Icon: MessageCircle, href: "https://wa.me/94715198343", color: "hover:bg-[#25D366]" },
-          { Icon: Github,       href: "https://github.com/IBOshadi",                     color: "hover:bg-white hover:text-black" },
-          { Icon: Linkedin,     href: "https://www.linkedin.com/in/oshadi-irugalbandara/", color: "hover:bg-[#0077b5]" },
-          { Icon: Facebook,     href: "https://www.facebook.com/profile.php?id=100072485026589", color: "hover:bg-[#1877f2]" },
-          { Icon: Instagram,    href: "https://www.instagram.com/oshadi_irugalbandara/", gradient: true },
+          {
+            Icon: MessageCircle,
+            href: "https://wa.me/94715198343",
+            color: "hover:bg-[#25D366]",
+          },
+          {
+            Icon: Github,
+            href: "https://github.com/IBOshadi",
+            color: "hover:bg-white hover:text-black",
+          },
+          {
+            Icon: Linkedin,
+            href: "https://www.linkedin.com/in/oshadi-irugalbandara/",
+            color: "hover:bg-[#0077b5]",
+          },
+          {
+            Icon: Facebook,
+            href: "https://www.facebook.com/profile.php?id=100072485026589",
+            color: "hover:bg-[#1877f2]",
+          },
+          {
+            Icon: Instagram,
+            href: "https://www.instagram.com/oshadi_irugalbandara/",
+            gradient: true,
+          },
         ].map(({ Icon, href, color, gradient }, i) => (
           <a
             key={i}
@@ -91,7 +166,11 @@ export default function Sidebar({ items, onClose, isSmallScreen }) {
               w-10 h-10 rounded-full flex items-center justify-center
               bg-gray-800 text-white
               transition-all duration-300 hover:scale-125 hover:shadow-2xl
-              ${gradient ? "hover:bg-gradient-to-br hover:from-pink-500 hover:via-red-500 hover:to-yellow-500" : color}
+              ${
+                gradient
+                  ? "hover:bg-gradient-to-br hover:from-pink-500 hover:via-red-500 hover:to-yellow-500"
+                  : color
+              }
             `}
           >
             <Icon className="w-6 h-6" strokeWidth={2.2} />
@@ -99,12 +178,13 @@ export default function Sidebar({ items, onClose, isSmallScreen }) {
         ))}
       </div>
 
-      {/* === NAVIGATION MENU === */}
+      {/* NAVIGATION MENU */}
       <nav className="w-full">
         <ul className="space-y-5">
           {items.map((item) => {
             const Icon = menuIcons[item.label] || Home;
             const isActive = activeSection === item.id;
+            const isHovered = hoveredSection === item.id;
 
             return (
               <li
@@ -118,13 +198,15 @@ export default function Sidebar({ items, onClose, isSmallScreen }) {
                   {/* Icon Circle */}
                   <div
                     className={`
-                      w-12 h-12 flex-shrink-0 rounded-full flex items-center justify-center
-                      shadow-md transition-all duration-300
-                      ${isActive  
-                        ? "bg-white text-black scale-110 ring-4"
-                        : "bg-gray-800 group-hover:bg-white group-hover:text-black"
-                        }
-                    `}
+    w-12 h-12 flex-shrink-0 rounded-full flex items-center justify-center
+    shadow-md transition-all duration-300 ease-out
+    ${
+      isActive || isHovered
+        ? "bg-white text-black scale-110 ring-4 ring-cyan-500/30"
+        : "bg-gray-800 group-hover:bg-white group-hover:text-black"
+    }
+    ${!(isActive || isHovered) ? "duration-500 delay-100" : "duration-50"}
+  `}
                   >
                     <Icon className="w-5 h-5" strokeWidth={2.2} />
                   </div>

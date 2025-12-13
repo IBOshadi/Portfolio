@@ -87,17 +87,23 @@ function App() {
             {sidebarOpen ? <HiX size={28} /> : <HiMenu size={28} />}
           </button>
         )}
-<section id="home"><HomePage /></section>
-<section id="about"><AboutPage/></section>        
-<section id="resume"><ResumePage /></section> 
-<section id="portfolio"><PortfolioPage /></section> 
-<section id="services"><ServicesPage /><TestamonialPage /></section> 
-<section id="contact"></section> 
-    
-        
-        
-        
-        
+        <section id="home">
+          <HomePage />
+        </section>
+        <section id="about">
+          <AboutPage />
+        </section>
+        <section id="resume">
+          <ResumePage />
+        </section>
+        <section id="portfolio">
+          <PortfolioPage />
+        </section>
+        <section id="services">
+          <ServicesPage />
+          <TestamonialPage />
+        </section>
+        <section id="contact"></section>
       </div>
 
       {/* ==================== MOBILE BACKDROP ==================== */}
